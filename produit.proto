@@ -1,0 +1,42 @@
+syntax = "proto3";
+package produit;
+
+// Définition du message produit
+message Produit {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+}
+
+// Définition des messages de requête et de réponse pour les méthodes d
+message GetProduitRequest {
+    string produit_id = 1;
+}
+
+message GetProduitResponse {
+    Produit produit = 1;
+}
+
+message SearchProduitsRequest {
+    string query = 1;
+}
+
+message SearchProduitsResponse {
+    repeated Produit produits = 1;
+}
+
+message CreateProduitRequest {
+  string title = 1;
+  string description = 2;
+}
+
+message CreateProduitResponse {
+  Produit produit = 1;
+}
+
+// Définition du service de films
+service ProduitService {
+    rpc GetProduit(GetProduitRequest) returns (GetProduitResponse);
+    rpc SearchProduits(SearchProduitsRequest) returns (SearchProduitsResponse);
+    rpc CreateProduit(CreateProduitRequest) returns (CreateProduitResponse);
+}

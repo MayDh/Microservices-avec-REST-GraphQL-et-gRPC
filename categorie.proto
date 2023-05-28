@@ -1,0 +1,43 @@
+syntax = "proto3";
+package categorie;
+
+// Définition du message TV show
+message Categorie {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+// Ajouter d'autres champs de données pour les séries TV au besoin
+}
+
+// Définition des messages de requête et de réponse pour les méthodes
+message GetCategorieRequest {
+    string categorie_id = 1;
+}
+
+message GetCategorieResponse {
+    Categorie categorie = 1;
+}
+
+message SearchCategoriesRequest {
+    string query = 1;
+}
+
+message SearchCategoriesResponse {
+    repeated Categorie categories = 1;
+}
+
+message CreateCategorieRequest {
+  string title = 1;
+  string description = 2;
+}
+
+message CreateCategorieResponse {
+  Categorie categorie = 1;
+}
+
+// Définition du service de séries TV
+service CategorieService {
+    rpc GetCategorie(GetCategorieRequest) returns (GetCategorieResponse);
+    rpc SearchCategories(SearchCategoriesRequest) returns (SearchCategoriesResponse);
+    rpc CreateCategorie(CreateCategorieRequest) returns (CreateCategorieResponse);
+}
